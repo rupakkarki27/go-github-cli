@@ -13,7 +13,8 @@ func TestAddNumber(t *testing.T) {
 		want int
 	}{
 		{"2+2=4", args{2, 2}, 4},
-		{"wrong", args{2, 3}, 5},
+		{"2+3=5", args{2, 3}, 5},
+		{"3+3=6", args{2, 3}, 5},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
