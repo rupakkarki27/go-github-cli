@@ -27,5 +27,5 @@ jobs:
         uses: actions/upload-artifact@v3.0.0
         with:
           name: go-github-cli
-          path: ./main
+          path: ./go-github-cli
           warn: Warning! No file found
