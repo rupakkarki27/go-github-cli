@@ -39,7 +39,7 @@ func FetchUserRepos(username string) UserRepos {
 		os.Exit(1)
 	}
 
-	helpers.DecodeJSON(resp.Body, repos)
+	helpers.DecodeJSON(resp.Body, &repos)
 
 	return repos
 }
