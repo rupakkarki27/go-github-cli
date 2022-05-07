@@ -9,6 +9,7 @@ import (
 )
 
 var username = flag.String("username", " ", "Username of the GitHub user")
+var show_repos = flag.Bool("show-repos", false, "Show repo details of the user")
 
 func main() {
 	flag.Parse()
@@ -19,4 +20,8 @@ func main() {
 	}
 
 	handlers.HandleUserDetails(*username)
+
+	if *show_repos {
+		handlers.HandleRepoDetails(*username)
+	}
 }
