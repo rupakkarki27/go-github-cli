@@ -1,8 +1,15 @@
 package api
 
-import "time"
+import (
+	"fmt"
+	"net/http"
+	"os"
+	"time"
 
-type UserReposResponse []struct {
+	"github.com/rupakkarki27/go-github-cli/pkg/helpers"
+)
+
+type UserRepos []struct {
 	ID              int       `json:"id"`
 	Name            string    `json:"name"`
 	FullName        string    `json:"full_name"`
@@ -15,4 +22,24 @@ type UserReposResponse []struct {
 	Size            int       `json:"size"`
 }
 
-func FetchUserRepos(username string) {}
+func FetchUserRepos(username string) UserRepos {
+	repos := UserRepos{}
+
+	url := "https://api.github.com/users/" + username + "/repos"
+
+	resp, err := http.Get(url)
+
+	if resp.StatusCode == http.StatusNotFound {
+		fmt.Println("Cannot find username. Exiting program...")
+		os.Exit(1)
+	}
+
+	if err != nil {
+		fmt.Println("An error occured")
+		os.Exit(1)
+	}
+
+	helpers.DecodeJSON(resp.Body, repos)
+
+	return repos
+}
