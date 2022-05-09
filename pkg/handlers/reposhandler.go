@@ -18,5 +18,4 @@ func HandleRepoDetails(username string) {
 	for index, value := range repos[1:6] {
 		fmt.Printf("%d - %s\n", index+1, value.FullName)
 	}
-
 }
