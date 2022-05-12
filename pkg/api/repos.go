@@ -17,7 +17,7 @@ type UserRepos []struct {
 	UpdatedAt       time.Time `json:"updated_at"`
 	WatchersCount   int       `json:"watchers_count"`
 	StargazersCount int       `json:"stargazers_count"`
-	OpenIssues      int       `json:"open_issues"`
+	OpenIssuesCount int       `json:"open_issues_count"`
 	ForksCount      int       `json:"forks_count"`
 	Size            int       `json:"size"`
 }
@@ -25,7 +25,7 @@ type UserRepos []struct {
 func FetchUserRepos(username string) UserRepos {
 	repos := UserRepos{}
 
-	url := "https://api.github.com/users/" + username + "/repos"
+	url := "https://api.github.com/users/" + username + "/repos?per_page=100&sort=updated"
 
 	resp, err := http.Get(url)
 
