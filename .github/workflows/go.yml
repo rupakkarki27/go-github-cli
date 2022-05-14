@@ -18,14 +18,19 @@ jobs:
           go-version: 1.18
 
       - name: Test
-        run: go test -v ./...
+        run: |
+          echo "Running Tests....."
+          go test -v ./...
 
       - name: Build
-        run: go build -v ./...
+        run: |
+          echo "Building....."
+          go build -v ./...
 
       - name: Upload a Build Artifact
+        run: echo "Uploading Artifact"
         uses: actions/upload-artifact@v3.0.0
         with:
           name: go-github-cli
-          path: ./go-github-cli
+          path: ./cmd/main/main
           warn: Warning! No file found
