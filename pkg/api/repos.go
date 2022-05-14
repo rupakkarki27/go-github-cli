@@ -39,6 +39,8 @@ func FetchUserRepos(username string) UserRepos {
 		os.Exit(1)
 	}
 
+	defer resp.Body.Close()
+
 	helpers.DecodeJSON(resp.Body, &repos)
 
 	return repos

@@ -9,8 +9,10 @@ import (
 )
 
 var username = flag.String("username", " ", "Username of the GitHub user")
-var show_repos = flag.Bool("show-repos", false, "Show repo details of the user")
+var show_user_repos = flag.Bool("show-user-repos", false, "Show repo details of the user")
 var sort_by = flag.String("sort-by", " ", "Specify the option to sort repos by: created | updated | watchers | issues | forks")
+var show_repo = flag.Bool("show-repo", false, "Show details of a specific repo")
+var repo = flag.String("repo", " ", "Name of the repo whose details are needed")
 
 func main() {
 	flag.Parse()
@@ -22,7 +24,12 @@ func main() {
 
 	handlers.HandleUserDetails(*username)
 
-	if *show_repos {
-		handlers.HandleRepoDetails(*username, *sort_by)
+	if *show_user_repos {
+		handlers.HandleRepos(*username, *sort_by)
 	}
+
+	if *show_repo && *repo != " " {
+		handlers.HandleRepoDetails(*username, *repo)
+	}
+
 }
