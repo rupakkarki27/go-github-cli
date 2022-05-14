@@ -7,7 +7,7 @@ import (
 	"github.com/rupakkarki27/go-github-cli/pkg/api"
 )
 
-func HandleRepoDetails(username string, sort_by string) {
+func HandleRepos(username string, sort_by string) {
 	repos := api.FetchUserRepos(username)
 
 	fmt.Printf("\n----- A summary of your repos -----\n")
